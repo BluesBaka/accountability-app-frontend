@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 
 note = () =>  {
 
@@ -10,6 +10,15 @@ note = () =>  {
   // }
 
     return(
+      <Fragment>
+        <form>
+        <textarea>
+
+        </textarea>
+        </form>
+
+
+      </Fragment>
 
     )
 

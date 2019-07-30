@@ -18,6 +18,7 @@ class App extends Component {
     }
   }
 
+
   componentDidMount(){
 
     fetch("http://localhost:3001/work_sessions")
@@ -136,21 +137,19 @@ class App extends Component {
       })
     }
 
-
-
-
     getOpenTasks();
   };
 
-  render(){
-    return (
-      <div className="App">
-        <UserHomepage />
-         {/* <Timer /> */}
-      </div>
-    );
-  }
+
+
+render(){
+  return (
+    <div className="App">
+      <UserHomepage />
+
+    </div>
+  );
 }
 
-
+}
 export default App;

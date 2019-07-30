@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
-import TaskList from './taskList'
-import CalendarTracker from './calendar'
+// import TaskList from './taskList'
+// import CalendarTracker from './calendar'
+import WorkSession from './workSession'
 import Timer from './timer'
 
 class UserHomepage extends Component {
@@ -14,12 +15,13 @@ class UserHomepage extends Component {
 
   render(){
     return(
+      <workSession>
       <Fragment >
-        <TaskList />
+    {/*  <TaskList /> */}
         <Timer />
         {/* <CalendarTracker /> */}
       </Fragment >
-
+      </workSession>
     )
   }
 
