@@ -33,7 +33,7 @@ import ReactCountdownClock from "react-countdown-clock";
           seconds={60 * minutes}
           color="#232323"
           alpha={0.5}
-          size={100}
+          size={150}
           onComplete={this.myCallback}
           paused={pausation}
           weight={20}

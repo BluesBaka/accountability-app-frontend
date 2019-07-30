@@ -17,7 +17,7 @@ class UserHomepage extends Component {
       <Fragment >
         <TaskList />
         <Timer />
-        <CalendarTracker />
+        {/* <CalendarTracker /> */}
       </Fragment >
 
     )

@@ -5,16 +5,19 @@ body {
 .App {
   text-align: center;
   width: 350px;
-  height: 95vh;
-  margin: 10 auto 10 auto;
+  height: 90vh;
+  margin: auto;
+  margin-top: 20px;
   background-color: white;
 }
 
-.timer {
-  background-color: gray;
-  display: inline-block;
 
+.react-countdown-clock {
+  margin-top: 20px;
+  display: inline-block;
+margin-left: -125px;
 }
+
 .calendar{
   width: 300px;
   margin: 10px;
