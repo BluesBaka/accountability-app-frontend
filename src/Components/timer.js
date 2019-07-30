@@ -3,42 +3,56 @@ import ReactCountdownClock from "react-countdown-clock";
 
   class Timer extends Component {
 
-    // constructor(){
-    //   super()
-    //   this.state = {
-    //     allSessions: []
-    //   }
-    // }
+    constructor(){
+      super()
+      this.state = {
+        // allSessions: []
+        pausation: false
+      }
+    }
 
     myCallback = () => {
       return "Done";
+    };
+
+    toggle = (pausation) => {
+       this.setState({
+         pausation: !this.state.pausation
+       })
     };
 
 
 
     render() {
       const minutes = 20;
-      let pausation = false;
-      const toggle = (pausation) => {
-        console.log("clicked")
-       if (pausation === false) {
-           pausation = true;
-        } else {
-          pausation = false;}
-      };
+
+
 
       return (
         <div className="timer">
         <ReactCountdownClock
           seconds={60 * minutes}
-          color="#232323"
+          color="#09792e"
           alpha={0.5}
           size={150}
           onComplete={this.myCallback}
-          paused={pausation}
+          paused ={this.state.pausation}
           weight={20}
-          onClick={()=> toggle(pausation)}
         />
+            <div>
+
+                </div>
+
+
+                <div className="timer-btn">
+                          {this.state.pausation ? (
+                        <button className="start-button" onClick={() =>this.toggle()} >Start</button>):
+
+                        (<button onClick={()=> this.toggle()}   className="pause-button">Pause</button>)
+                            }
+                      </div>
+
+
         </div>
       );
     }
