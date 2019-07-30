@@ -1,8 +1,24 @@
-@media only screen (min-width: 640px){
+body {
+      background-color: #edf5fc
+}
 
-  .App {
-    text-align: center;
-  }
+.App {
+  text-align: center;
+  width: 350px;
+  height: 95vh;
+  margin: 10 auto 10 auto;
+  background-color: white;
+}
+
+.timer {
+  background-color: gray;
+  display: inline-block;
+
+}
+.calendar{
+  width: 300px;
+  margin: 10px;
+}
 
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -34,21 +50,25 @@
     }
   }
 
-}
-
-@media only screen (min-width: 768px){
 
 
 
-}
 
-@media only screen (min-width: 1024px){
+
+
+@media only screen (max-width: 768px){
 
 
 
 }
 
-@media only screen (min-width: 1200px){
+@media only screen (max-width: 1024px){
+
+
+
+}
+
+@media only screen (max-width: 1200px){
 
 
 
