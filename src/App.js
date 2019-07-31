@@ -15,7 +15,8 @@ class App extends Component {
       allTasks: [],
       workSessions: [],
       currentSession: [],
-      currentTasks: []
+      currentTasks: [],
+      working: false
     }
   }
 
@@ -24,6 +25,12 @@ class App extends Component {
   }
 
   // editTask function
+  beginTimer = () => {
+    this.sendTime()
+    this.setState({
+      working: true
+    })
+  }
 
   sendTime = () => {
     let currentDate = new Date();
@@ -40,10 +47,11 @@ class App extends Component {
         start_time: date
       })
     })
+    // console.log("sent time")
   }
 
   addATask = (e) => {
-    debugger;
+    // debugger;
     e.preventDefault()
     e.persist()
     const input = e.target[0].value;
@@ -87,8 +95,9 @@ class App extends Component {
     return (
       <div className="App">
         <UserHomepage
-        appState={this.state} sendTime={this.sendTime} addATask={this.addATask}
-        deleteTask={this.deleteTask}/>
+        appState={this.state} beginTimer={this.beginTimer} addATask={this.addATask}
+        deleteTask={this.deleteTask}
+        working={this.state.working}/>
 
       </div>
     );
@@ -181,7 +190,7 @@ class App extends Component {
   };
 
   componentDidUpdate(){
-
+    console.log("I updated")
     const getOpenTasks = () => {
       fetch("http://localhost:3001/tasks")
       .then(res => res.json())
@@ -198,6 +207,7 @@ class App extends Component {
 
     const reassignWS = openTasks => {
       openTasks.map(task => {
+        console.log(`%cWork Session ${this.state.currentSession.id} updated`, "color:green;")
         fetch(`http://localhost:3001/tasks/${task.id}`, {
           method: "PATCH",
           headers: {
@@ -207,7 +217,7 @@ class App extends Component {
           body: JSON.stringify({
             work_session_id: this.state.currentSession.id
           })
-        })
+        }).then(resp => resp.json()).then(json => console.log(json))
       })
     }
 

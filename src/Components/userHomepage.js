@@ -3,7 +3,7 @@ import TaskList from './taskList'
 import CalendarTracker from './calendar'
 import Timer from './timer'
 
-// props= appState, addATask(), sendTime(), deleteTask()
+// props= appState, addATask(), beginTimer(), deleteTask(), working
 class UserHomepage extends Component {
 
   constructor(){
@@ -16,9 +16,10 @@ class UserHomepage extends Component {
   render(){
     return(
       <Fragment >
-        <Timer sendTime={this.props.sendTime}/>
+        <Timer beginTimer={this.props.beginTimer}/>
         <TaskList tasks={this.props.appState.currentTasks} addATask={this.props.addATask}
-        deleteTask={this.props.deleteTask}/>
+        deleteTask={this.props.deleteTask}
+        working={this.props.working}/>
 
         {/* <CalendarTracker /> */}
       </Fragment >

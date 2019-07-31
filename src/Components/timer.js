@@ -33,7 +33,8 @@ import ReactCountdownClock from "react-countdown-clock";
         pausation: false,
         stopped: true
       })
-      this.props.sendTime()
+      this.props.beginTimer()
+
       // create checkboxes
       // create notebox
     };
