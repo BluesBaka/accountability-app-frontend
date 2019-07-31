@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
+
 import './App.css';
 import UserHomepage from './Components/userHomepage'
-import Timer from './Components/timer'
+// import Timer from './Components/timer'
 
 class App extends Component {
   constructor () {
@@ -18,6 +19,67 @@ class App extends Component {
     }
   }
 
+  sendTime = () => {
+    let currentDate = new Date();
+    let date = currentDate.toString();
+    date = date.split(" (")[0]
+    // debugger;
+    fetch(`http://localhost:3001/work_sessions/${this.state.currentSession.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+        start_time: date
+      })
+    })
+  }
+
+  addATask = (e) => {
+    debugger;
+    e.preventDefault()
+    e.persist()
+    console.log(e.target[0].value)
+
+    fetch("http://localhost:3001/tasks", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+        status: "open",
+        title: e.target[0].value,
+        work_session_id: this.state.currentSession.id
+      })
+    })
+    .then(resp => resp.json())
+    .then(newTask => stateNewTask(newTask) )
+
+    e.target[0].value = ""
+
+    const stateNewTask = newTask => {
+       this.setState({
+         currentTasks: [
+           newTask,
+           ...this.state.currentTasks
+         ]
+       })
+     }
+
+  }
+
+
+
+  render(){
+    return (
+      <div className="App">
+        <UserHomepage appState={this.state} sendTime={this.sendTime} addATask={this.addATask}/>
+
+      </div>
+    );
+  }
 
   componentDidMount(){
 
@@ -31,7 +93,6 @@ class App extends Component {
       })
 
       this.setState({
-        ...this.state,
         workSessions: sessions
       }, ()=> {getCurrentSession()})
     }
@@ -117,9 +178,8 @@ class App extends Component {
     const filterOpenTasks = tasks => {
       const openTasks = tasks.filter(task => {
         return task.status === "open"
-
-        reassignWS(openTasks)
       })
+      reassignWS(openTasks)
     }
 
     const reassignWS = openTasks => {
@@ -139,17 +199,5 @@ class App extends Component {
 
     getOpenTasks();
   };
-
-
-
-render(){
-  return (
-    <div className="App">
-      <UserHomepage appState={this.state}/>
-
-    </div>
-  );
-}
-
 }
 export default App;

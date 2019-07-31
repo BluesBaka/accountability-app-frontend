@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ReactCountdownClock from "react-countdown-clock";
 
+// props= sendTime
   class Timer extends Component {
 
     constructor(){
@@ -27,12 +28,10 @@ import ReactCountdownClock from "react-countdown-clock";
         pausation: false,
         stopped: true
       })
-      this.sendTime()
+      this.props.sendTime()
     };
 
-    sendTime = () => {
 
-    }
     // toggle = (pausation) => {
     //    this.setState({
     //      pausation: !this.state.pausation

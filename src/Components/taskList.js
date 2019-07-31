@@ -3,21 +3,21 @@ import React from 'react'
 
 const TaskList = props => {
 
-  const addTasks = () => {
-    return props.tasks.map(task => {
-      return <li>{task.title}</li>
+  const displayTasks = () => {
+    return props.tasks.map((task, idx) => {
+      return <li key={idx}>{task.title}</li>
     })
 
   }
 
     return(
       <div className="">
-        <form>
+        <form onSubmit={props.addATask}>
           <input type="text" name="taskInput" />
-          <input type="submit" value="Add"/>
+          <input type="submit" value="Add" />
         </form>
         <ul>
-          {addTasks()}
+          {displayTasks()}
         </ul>
       </div>
     )
