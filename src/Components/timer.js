@@ -7,19 +7,37 @@ import ReactCountdownClock from "react-countdown-clock";
       super()
       this.state = {
         // allSessions: []
-        pausation: false
+        pausation: true,
+        class: "stop-button",
+        firstClick: false,
+        stopped: false
       }
     }
 
-    myCallback = () => {
-      return "Done";
+    wrapUpSession = () => {
+      this.setState({
+        pausation: true,
+        class: "stop-button hidden"
+      })
     };
 
-    toggle = (pausation) => {
-       this.setState({
-         pausation: !this.state.pausation
-       })
+    startTime = () => {
+      console.log("TimeStamp")
+      this.setState({
+        pausation: false,
+        stopped: true
+      })
+      this.sendTime()
     };
+
+    sendTime = () => {
+
+    }
+    // toggle = (pausation) => {
+    //    this.setState({
+    //      pausation: !this.state.pausation
+    //    })
+    // };
 
 
 
@@ -30,27 +48,25 @@ import ReactCountdownClock from "react-countdown-clock";
 
       return (
         <div className="timer">
-        <ReactCountdownClock
-          seconds={60 * minutes}
-          color="#09792e"
-          alpha={0.5}
-          size={150}
-          onComplete={this.myCallback}
-          paused ={this.state.pausation}
-          weight={20}
-        />
-            <div>
+          <ReactCountdownClock
+            seconds={60 * minutes}
+            color="#09792e"
+            alpha={0.5}
+            size={150}
+            onComplete={()=> this.wrapUpSession()}
+            paused ={this.state.pausation}
+            weight={20}
+          />
 
-                </div>
+          <div className="timer-btn">
+            {!this.state.stopped ? (
+              <button className="start-button" onClick={() =>
+                this.startTime()} >Start</button>) :
 
+              (<button onClick={()=> this.wrapUpSession()}   className={this.state.class}>STOP</button>)
+              }
 
-                <div className="timer-btn">
-                          {this.state.pausation ? (
-                        <button className="start-button" onClick={() =>this.toggle()} >Start</button>):
-
-                        (<button onClick={()=> this.toggle()}   className="pause-button">Pause</button>)
-                            }
-                      </div>
+          </div>
 
 
         </div>

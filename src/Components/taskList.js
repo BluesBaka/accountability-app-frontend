@@ -1,21 +1,26 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 
-class TaskList extends Component {
+const TaskList = props => {
 
-  constructor(){
-    super()
-    this.state = {
-      allSessions: []
-    }
+  const addTasks = () => {
+    return props.tasks.map(task => {
+      return <li>{task.title}</li>
+    })
+
   }
 
-  render(){
     return(
-      <div>
+      <div className="">
+        <form>
+          <input type="text" name="taskInput" />
+          <input type="submit" value="Add"/>
+        </form>
+        <ul>
+          {addTasks()}
+        </ul>
       </div>
     )
-  }
 
 }
 
