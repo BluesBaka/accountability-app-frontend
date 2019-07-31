@@ -15,6 +15,7 @@ import ReactCountdownClock from "react-countdown-clock";
       }
     }
 
+
     wrapUpSession = () => {
       this.setState({
         pausation: true,

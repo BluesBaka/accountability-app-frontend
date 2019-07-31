@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import task from './workSessionComponents/task'
+import task from './workSessionComponents/task'
 
 class WorkSession extends Component {
 
