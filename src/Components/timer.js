@@ -21,6 +21,10 @@ import ReactCountdownClock from "react-countdown-clock";
         pausation: true,
         class: "stop-button hidden"
       })
+
+      // call a function to "complete" workSession
+        // send endtime TimeStamp
+        // create finish worksession button (submit)
     };
 
     startTime = () => {
@@ -30,6 +34,8 @@ import ReactCountdownClock from "react-countdown-clock";
         stopped: true
       })
       this.props.sendTime()
+      // create checkboxes
+      // create notebox
     };
 
 
@@ -42,7 +48,7 @@ import ReactCountdownClock from "react-countdown-clock";
 
 
     render() {
-      const minutes = 20;
+      const minutes = 1;
 
 
 
@@ -56,6 +62,7 @@ import ReactCountdownClock from "react-countdown-clock";
             onComplete={()=> this.wrapUpSession()}
             paused ={this.state.pausation}
             weight={20}
+
           />
 
           <div className="timer-btn">
