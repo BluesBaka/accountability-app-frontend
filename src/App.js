@@ -16,12 +16,60 @@ class App extends Component {
       workSessions: [],
       currentSession: [],
       currentTasks: [],
-      working: false
+      working: false,
+      closedTasks: []
     }
   }
 
+// onclick on checkboxes
+  // will toggle putting into/out of closeTasks state
+toggleCheckbox = (e, task) => {
+  // debugger;
+  e.target.checked ? this.checkClosed(task) : this.uncheckUnclosed(task);
+
+}
+
+checkClosed = task => {
+  console.log("check closed", task)
+  this.setState({
+    closedTasks: [
+      ...this.state.closedTasks,
+      task
+      ]
+    })
+}
+
+uncheckUnclosed = task => {
+  console.log("uncheck open", task)
+  let updatedClosedTasks = this.state.closedTasks.filter(iTask =>{
+    return iTask !== task });
+
+   this.setState({
+     closedTasks: updatedClosedTasks
+   })
+}
+// "WRAP UP" workSession ON STOP OR COMPLETION
+  // send endtime TimeStamp
+  // create finish worksession button (submit)
+
+  // closeSession ONSUBMIT
+    //
+
   deleteTask = task => {
+    fetch(`http://localhost:3001/tasks/${task.id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      }
+    })
+    const updatedTasks = this.state.currentTasks.filter(oneTask => {
+      return oneTask !== task
+    })
     console.log("delete button", task)
+    this.setState({
+      currentTasks: updatedTasks
+    })
   }
 
   // editTask function
@@ -97,7 +145,9 @@ class App extends Component {
         <UserHomepage
         appState={this.state} beginTimer={this.beginTimer} addATask={this.addATask}
         deleteTask={this.deleteTask}
-        working={this.state.working}/>
+        working={this.state.working}
+        toggleCheckbox={this.toggleCheckbox}
+        />
 
       </div>
     );
@@ -207,7 +257,7 @@ class App extends Component {
 
     const reassignWS = openTasks => {
       openTasks.map(task => {
-        console.log(`%cWork Session ${this.state.currentSession.id} updated`, "color:green;")
+        // console.log(`%cWork Session ${this.state.currentSession.id} updated`, "color:green;")
         fetch(`http://localhost:3001/tasks/${task.id}`, {
           method: "PATCH",
           headers: {
