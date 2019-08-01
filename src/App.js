@@ -25,7 +25,6 @@ class App extends Component {
   }
 
   submitWorkSession = (e) => {
-    e.preventDefault()
     e.persist()
     console.log("submitted")
 
@@ -54,7 +53,7 @@ class App extends Component {
     const finishedTasks = this.state.closeTasks;
     const startTime = this.state.startTime;
     const endTime = this.state.endTime;
-    debugger;
+    // debugger;
 
 
     fetch(`http://localhost:3001/work_sessions/${ws_id}`, {
@@ -69,8 +68,6 @@ class App extends Component {
         note: noteText
       })
     })
-    .then(resp=> resp.json())
-    .then(json => console.log(json))
   }
   // onclick on checkboxes
     // will toggle putting into/out of closeTasks state
@@ -110,7 +107,7 @@ class App extends Component {
 
   saveEndTime = () => {
     const date = this.createTime();
-    // debugger;
+    // ;
     this.setState({
       endTime: date
     })
@@ -150,7 +147,7 @@ class App extends Component {
 
   saveStartTime = () => {
     const date = this.createTime();
-    // debugger;
+    // ;
     this.setState({
       startTime: date
     })
@@ -164,7 +161,7 @@ class App extends Component {
     return date;
   }
   addATask = (e) => {
-    // debugger;
+    // ;
     e.preventDefault()
     e.persist()
     const input = e.target[0].value;
