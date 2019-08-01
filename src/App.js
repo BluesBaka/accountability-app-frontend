@@ -1,3 +1,13 @@
+// Move states to userHomepage component
+// account for multiple users
+  // - create a landing page
+  // - create a history page
+    // --incorporate with calendar view
+  // create a login
+  // create a signup
+  // JWT auth
+
+
 import React, {Component} from 'react';
 
 import './App.css';

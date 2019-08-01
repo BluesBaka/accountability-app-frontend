@@ -1,3 +1,8 @@
+// turn off milliseconds view
+// option to pause?
+// replace timer text on stop with total timeout
+
+
 import React, { Component } from 'react'
 import ReactCountdownClock from "react-countdown-clock";
 
