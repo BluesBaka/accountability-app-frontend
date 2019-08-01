@@ -4,10 +4,10 @@ body {
 
 .App {
   text-align: left;
-  width: 300px;
+  width: 80vw;
   height: 90vh;
   margin: auto;
-  margin-top: 20px;
+  margin-top: 30px;
   background-color: white;
 }
 
@@ -18,23 +18,65 @@ body {
   margin: 20px auto;
 
 }
+
+.note {
+  background-color: blue;
+  height: 30%;
+  width: 90%;
+  text-align: center;
+  margin: auto;
+  margin-top: 0;
+  max-width: 550px;
+}
+
+.note textarea {
+  height: 100%;
+  width:100%;
+
+  /* background-color: pink; */
+}
+
+.note input {
+  display: block;
+  margin: auto;
+  background-color: white;
+  width: 50%;
+}
+
 .delete-button{
   /* background-color: black; */
   display: inline-block;
 }
-.timer button {
-  margin-left: auto;
-  margin-right: auto;
+
+.start-button, .stop-button {
+  margin: -10px auto 5px auto;
+  display: block;
+
 }
 
 li {
   list-style: none;
+  list-style-position: inside;
+  /* padding: 0;
+  margin: 0; */
 }
-
+.task-div{
+  height:35%;
+  /* background-color: purple; */
+  max-width: 400px;
+  margin: auto;
+  max-height: 400px;
+  width: 100%;
+}
 .task-list {
-  height: 300px;
+  height: 80%;
   text-overflow: clip;
   overflow: scroll;
+  background-color: #caedd388;
+  width: 80%;
+  margin: auto;
+  padding: 5px;
+
 }
 
 .hidden {
@@ -66,35 +108,39 @@ li {
     color: #61dafb;
   }
 
-  @keyframes App-logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
+
+
+
+
+
+
+
+@media  (min-width: 768px){
+
+  .App {
+    text-align: left;
+    width: 80vw;
+    height: 90vh;
+    margin: auto;
+    margin-top: 20px;
+    background-color: white;
   }
 
+  .react-countdown-clock {
 
+    display: block;
+    margin: 40px auto;
+    margin-top: 50px;
+  }
 
-
-
-
-
-@media only screen (max-width: 768px){
-
-
-
-}
-
-@media only screen (max-width: 1024px){
-
-
-
-}
-
-@media only screen (max-width: 1200px){
-
-
+  .note {
+    background-color: blue;
+    height: 30%;
+    width: 90%;
+    text-align: center;
+    margin: auto;
+    margin-top: 20px;
+    max-width: 550px;
+  }
 
 }

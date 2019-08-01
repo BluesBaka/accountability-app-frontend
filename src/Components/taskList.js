@@ -28,7 +28,7 @@ const TaskList = props => {
   }
 
     return(
-      <div className="">
+      <div className="task-div">
         <form onSubmit={props.addATask}>
           <input type="text" name="taskInput" />
           <input type="submit" value="Add" />

@@ -17,37 +17,104 @@ class App extends Component {
       currentSession: [],
       currentTasks: [],
       working: false,
-      closedTasks: []
+      closedTasks: [],
+      submitable: false,
+      startTime: "",
+      endTime: ""
     }
   }
 
-// onclick on checkboxes
-  // will toggle putting into/out of closeTasks state
-toggleCheckbox = (e, task) => {
-  // debugger;
-  e.target.checked ? this.checkClosed(task) : this.uncheckUnclosed(task);
+  submitWorkSession = (e) => {
+    e.preventDefault()
+    e.persist()
+    console.log("submitted")
 
-}
+    this.updateWorkSession(e)
+    this.closeCompletedTasks()
+  }
 
-checkClosed = task => {
-  console.log("check closed", task)
-  this.setState({
-    closedTasks: [
-      ...this.state.closedTasks,
-      task
-      ]
+  closeCompletedTasks = () => {
+    this.state.closedTasks.map(task => {
+      fetch(`http://localhost:3001/tasks/${task.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          status: "closed"
+        })
+      }).then(resp => resp.json()).then(json => console.log(json))
     })
-}
+  }
 
-uncheckUnclosed = task => {
-  console.log("uncheck open", task)
-  let updatedClosedTasks = this.state.closedTasks.filter(iTask =>{
-    return iTask !== task });
+  updateWorkSession = (e) => {
+    const ws_id = this.state.currentSession.id;
+    const noteText = e.target.form[0].value;
+    const finishedTasks = this.state.closeTasks;
+    const startTime = this.state.startTime;
+    const endTime = this.state.endTime;
+    debugger;
 
-   this.setState({
-     closedTasks: updatedClosedTasks
-   })
-}
+
+    fetch(`http://localhost:3001/work_sessions/${ws_id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+        start_time: startTime,
+        end_time: endTime,
+        note: noteText
+      })
+    })
+    .then(resp=> resp.json())
+    .then(json => console.log(json))
+  }
+  // onclick on checkboxes
+    // will toggle putting into/out of closeTasks state
+  toggleCheckbox = (e, task) => {
+    // debugger;
+    e.target.checked ? this.checkClosed(task) : this.uncheckUnclosed(task);
+
+  }
+
+  checkClosed = task => {
+    console.log("check closed", task)
+    this.setState({
+      closedTasks: [
+        ...this.state.closedTasks,
+        task
+        ]
+      })
+  }
+
+  uncheckUnclosed = task => {
+    console.log("uncheck open", task)
+    let updatedClosedTasks = this.state.closedTasks.filter(iTask =>{
+      return iTask !== task });
+
+     this.setState({
+       closedTasks: updatedClosedTasks
+     })
+  }
+
+  completeTimer = () => {
+    this.saveEndTime()
+    // show submit button in note
+    this.setState({
+      submitable: true
+    })
+  }
+
+  saveEndTime = () => {
+    const date = this.createTime();
+    // debugger;
+    this.setState({
+      endTime: date
+    })
+  }
 // "WRAP UP" workSession ON STOP OR COMPLETION
   // send endtime TimeStamp
   // create finish worksession button (submit)
@@ -74,30 +141,28 @@ uncheckUnclosed = task => {
 
   // editTask function
   beginTimer = () => {
-    this.sendTime()
+    this.saveStartTime()
     this.setState({
       working: true
     })
   }
 
-  sendTime = () => {
-    let currentDate = new Date();
-    let date = currentDate.toString();
-    date = date.split(" (")[0]
+
+  saveStartTime = () => {
+    const date = this.createTime();
     // debugger;
-    fetch(`http://localhost:3001/work_sessions/${this.state.currentSession.id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      body: JSON.stringify({
-        start_time: date
-      })
+    this.setState({
+      startTime: date
     })
-    // console.log("sent time")
+    console.log("saved time")
   }
 
+  createTime = () => {
+    let currentDate = new Date();
+    let date = currentDate.toString();
+    date = date.split(" (")[0];
+    return date;
+  }
   addATask = (e) => {
     // debugger;
     e.preventDefault()
@@ -147,6 +212,9 @@ uncheckUnclosed = task => {
         deleteTask={this.deleteTask}
         working={this.state.working}
         toggleCheckbox={this.toggleCheckbox}
+        completeTimer={this.completeTimer}
+        submitable={this.state.submitable}
+        submitWorkSession={this.submitWorkSession}
         />
 
       </div>
