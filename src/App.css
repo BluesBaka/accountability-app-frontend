@@ -1,30 +1,138 @@
+/* Finish css for web view */
+
+
 body {
       background-color: #edf5fc
 }
 
 .App {
-  text-align: center;
-  width: 350px;
-  height: 95vh;
-  margin: 10 auto 10 auto;
+  text-align: left;
+  width: 80vw;
+  height: 90vh;
+  margin: auto;
+  margin-top: 30px;
   background-color: white;
 }
 
-.timer {
-  background-color: gray;
-  display: inline-block;
+input[type=text]:focus, textarea:focus {
+  outline-color: gray;
+  outline: 1px solid #cccc
+}
+
+.react-countdown-clock {
+  margin-top: 20px;
+  display: block;
+  margin: 20px auto 0 auto;
 
 }
+
+.timer {
+  display: inline-block;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.timer-btn{
+  height: 20px;
+  padding: 5px;
+}
+
+.start-button, .stop-button {
+  margin: auto;
+  display: block;
+  font-size: 12px;
+  padding: 0;
+}
+
+.task-div{
+  height:35%;
+  /* background-color: purple; */
+  max-width: 400px;
+  margin: auto;
+  max-height: 400px;
+  width: 100%;
+}
+
+.task-div form, .task-list {
+  width: 80%;
+  margin: auto;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.task-div form {
+  text-align: center;
+}
+
+.task-div input[type=submit] {
+  width: 50px;
+  margin-left: 5px;
+}
+
+.task-div input, .task-list {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.task-list {
+  height: 80%;
+  text-overflow: clip;
+  overflow: scroll;
+  background-color: #caedd388;
+}
+
+li {
+  list-style: none;
+  list-style-position: inside;
+  /* padding: 0;
+  margin: 0; */
+}
+
+.delete-button{
+  /* background-color: black; */
+  display: inline-block;
+}
+
+.note {
+
+  height: 28%;
+  width: 90%;
+  text-align: center;
+  margin: auto;
+  margin-top: 0;
+  max-width: 550px;
+  border: .5px solid #e1e3e1;
+  border-radius: 4px;
+  box-sizing: border-box;
+
+}
+
+.note textarea {
+  height: 98%;
+  width: 98%;
+
+
+  /* background-color: pink; */
+}
+
+.note input {
+  display: block;
+  margin: 5px auto;
+  background-color: white;
+  width: 30%;
+}
+
+.hidden {
+  display: none;
+}
+
 .calendar{
   width: 300px;
   margin: 10px;
 }
 
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-    height: 40vmin;
-    pointer-events: none;
-  }
 
   .App-header {
     background-color: #282c34;
@@ -38,16 +146,7 @@ body {
   }
 
   .App-link {
-    color: #61dafb;
-  }
-
-  @keyframes App-logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
+    /* color: #61dafb; */
   }
 
 
@@ -56,20 +155,33 @@ body {
 
 
 
-@media only screen (max-width: 768px){
 
+@media  (min-width: 768px){
 
+  .App {
+    text-align: left;
+    width: 80vw;
+    height: 90vh;
+    margin: auto;
+    margin-top: 20px;
+    background-color: white;
+  }
 
-}
+  .react-countdown-clock {
 
-@media only screen (max-width: 1024px){
+    display: block;
+    margin: 40px auto;
+    margin-top: 50px;
+  }
 
-
-
-}
-
-@media only screen (max-width: 1200px){
-
-
+  .note {
+    /* background-color: blue; */
+    height: 30%;
+    width: 80%;
+    text-align: center;
+    margin: auto;
+    margin-top: 20px;
+    max-width: 550px;
+  }
 
 }
